@@ -21,5 +21,5 @@ def fibonacci(self, n: int) -> List[int]:
         redis_client.publish('task_updates', f'{self.request.id}: {json.dumps(f)}')
     f.append(fib(n))
     redis_client.publish('task_updates', f'{self.request.id}: {json.dumps(f)}')
-    
+    redis_client.publish('task_updates', f'{self.request.id}: Completed')
     return f
