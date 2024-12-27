@@ -1,3 +1,4 @@
+import time
 from celery import Celery
 import redis
 from typing import List
@@ -18,8 +19,10 @@ def fibonacci(self, n: int) -> List[int]:
 
     for i in range(n):
         f.append(fib(i))
+        time.sleep(0.5) # Simulate a long computation
         redis_client.publish('task_updates', f'{self.request.id}: {json.dumps(f)}')
     f.append(fib(n))
-    redis_client.publish('task_updates', f'{self.request.id}: {json.dumps(f)}')
-    redis_client.publish('task_updates', f'{self.request.id}: Completed')
+    
+    redis_client.publish('task_updates', f'{self.request.id}: Completed {json.dumps(f)}')
+    
     return f

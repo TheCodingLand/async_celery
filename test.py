@@ -11,6 +11,6 @@ def stream_fibonacci_sequence(n):
     
 
 if __name__ == "__main__":
-    n = 10  # You can change this number as needed
+    n = 21# You can change this number as needed
     stream_fibonacci_sequence(n)
 
